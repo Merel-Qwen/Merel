@@ -3,8 +3,8 @@ import React from "react";
 export default class FetchData extends React.Component {
   state = {
     loading: true,
-    beer: {},
-    beerName: {},
+    countries: [],
+    beerNames: [],
   };
 
   async componentDidMount() {
@@ -16,14 +16,26 @@ export default class FetchData extends React.Component {
     console.log("data:", data);
     console.log("data.data", dataArray);
 
+    let countryList = [];
+    let beerNameList = [];
+
     let i;
     for (i = 0; i < dataArray.length; i++) {
+      countryList.push(dataArray[i].country);
+      beerNameList.push(dataArray[i].name);
+      //   this.setState({
+
+      //     beer: dataArray[i].country,
+      //     beerName: dataArray[i],
+      //     ,
+      //   });
+
+      console.log(i);
       this.setState({
-        beer: dataArray[i].country,
-        beerName: dataArray[i],
+        countries: countryList,
+        beerNames: beerNameList,
         loading: false,
       });
-      console.log(i);
     }
   }
 
@@ -32,7 +44,7 @@ export default class FetchData extends React.Component {
       return <div>loading...</div>;
     }
 
-    if (!this.state.beer) {
+    if (!this.state.beerNames) {
       return <div>didn't get a beer</div>;
     }
 
@@ -40,18 +52,20 @@ export default class FetchData extends React.Component {
       <div>
         <div>
           <h6>Beer</h6>
-          <p>{this.state.beerName.name}</p>
-          {console.log(this.state.beerName)}
+          {this.state.beerNames.map((item) => (
+            <p>{item}</p>
+          ))}
+          {console.log(this.state.beerNames)}
         </div>
         <div>
           <h6>country</h6>
-          <p>{this.state.beer.name}</p>
-          {console.log(this.state.beer.name)}
+          {/* <p>{this.state.countries}</p> */}
+          {console.log(this.state.countries)}
         </div>
 
         <div>
           <h6>Region</h6>
-          <p>{this.state.beerName.region}</p>
+          {/* <p>{this.state.beerName.region}</p> */}
         </div>
         <div></div>
       </div>
