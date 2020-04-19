@@ -1,10 +1,11 @@
 import React from "react";
 
-export default class FetchData extends React.Component {
+export default class BeerPerCountry extends React.Component {
   state = {
     loading: true,
-    allBeersAndCountries: [],
+
     beersFromUSA: [],
+    onlyUSA: [],
   };
 
   async componentDidMount() {
@@ -25,7 +26,6 @@ export default class FetchData extends React.Component {
       });
       allBeersAndCountries.sort();
 
-      console.log(i);
       this.setState({
         allBeersAndCountries: allBeersAndCountries,
 
@@ -39,10 +39,23 @@ export default class FetchData extends React.Component {
         country: dataArray[e].country.displayName,
         beerName: dataArray[e].name,
       });
-      beersFromUSA.sort();
+
+      const allcountries = beersFromUSA.map((item) => item.country);
+      let onlyUSA = allcountries.filter(function checkCountry(country) {
+        return country === "United States";
+      });
+
+      console.log(onlyUSA);
+
+      const notUSA = allcountries.filter(function checkCountry(country) {
+        return country != "United States";
+      });
+
+      console.log(notUSA);
 
       this.setState({
         beersFromUSA: beersFromUSA,
+        onlyUSA: onlyUSA,
 
         loading: false,
       });
@@ -51,7 +64,7 @@ export default class FetchData extends React.Component {
 
   render() {
     if (this.state.loading) {
-      return <div>Getting your beers....</div>;
+      return <div>loading...</div>;
     }
 
     if (!this.state.allBeersAndCountries) {
@@ -60,17 +73,19 @@ export default class FetchData extends React.Component {
 
     return (
       <div>
-        <h1>All beers</h1>
-        <div className="allbeers">
-          {this.state.allBeersAndCountries.map((item) => (
-            <div className="beerItem">
-              <p> {item.beerName}</p>
+        <div>
+          <h1>Beers per country</h1>
+          <button>sort by country</button>
+          <div className="allbeers">
+            {this.state.beersFromUSA.map((item) => (
+              <div className="beerItem">
+                <p> {item.beerName}</p>
 
-              <p>From:</p>
-              <p> {item.country}</p>
-              {console.log(this.state.allBeersAndCountries)}
-            </div>
-          ))}
+                <p>From:</p>
+                <p> {item.country}</p>
+              </div>
+            ))}
+          </div>
         </div>
       </div>
     );
