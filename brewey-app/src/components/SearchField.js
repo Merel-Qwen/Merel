@@ -5,7 +5,11 @@ export default class SearchField extends React.Component {
     super(props);
     this.state = {
       loading: true,
+      value: "",
+      isTested: false,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
 
   async componentDidMount() {
@@ -23,6 +27,7 @@ export default class SearchField extends React.Component {
       allBeers.push({
         beerName: dataArray[i].name,
         abv: dataArray[i].abv,
+
         // img: dataArray[i].brewery.images.icon,
       });
     }
@@ -34,17 +39,24 @@ export default class SearchField extends React.Component {
       loading: false,
     });
   }
-  isOnlyUSA(beerIsoCode) {
-    return beerIsoCode === "US";
+  //   isOnlyUSA(beerIsoCode) {
+  //     return beerIsoCode === "US";
+  //   }
+
+  handleChange(event) {
+    this.setState({ value: event.target.value });
   }
 
-  ikbengeklikt() {
-    this.setState((prevState) => ({
-      isClicked: !prevState.isClicked,
-    }));
+  handleSubmit(event) {
+    alert("The beer you're looking for is: " + this.state.value);
+    event.preventDefault();
   }
 
   render() {
+    if (this.isTested) {
+      return <div>isTested</div>;
+    }
+
     if (this.state.loading) {
       return <div>loading...</div>;
     }
@@ -58,10 +70,32 @@ export default class SearchField extends React.Component {
     return (
       <div>
         <div>
-          <button onClick={this.ikbengeklikt}>
-            {this.state.isClicked ? "zoek voor USA" : "Zoek voor niet-USA"}
-          </button>
-          <h1>Beers per country</h1>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Search bij name
+              <input
+                type="text"
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+          <div className="allbeers">
+            {this.state.allBeers
+              .filter((item) => !this.state.value)
+
+              .map((item) => (
+                <div className="beerItem">
+                  <p> {item.beerName}</p>
+
+                  <p>From:</p>
+                  <p> {item.country}</p>
+                </div>
+              ))}
+          </div>
+
+          <h1>Beers by name</h1>
 
           <div className="allbeers">
             {this.state.allBeers.map((item) => (

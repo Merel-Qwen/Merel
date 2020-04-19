@@ -58,21 +58,21 @@ export default class FetchData extends React.Component {
       return <div>didn't get a beer</div>;
     }
 
-    return (
-      <div>
-        <h1>All beers</h1>
-        <div className="allbeers">
-          {this.state.allBeersAndCountries.map((item) => (
-            <div className="beerItem">
-              <p> {item.beerName}</p>
+    // return (
+    // //   <div>
+    // //     <h1>All beers</h1>
+    // //     <div className="allbeers">
+    // //       {this.state.allBeersAndCountries.map((item) => (
+    // //         <div className="beerItem">
+    // //           <p> {item.beerName}</p>
 
-              <p>From:</p>
-              <p> {item.country}</p>
-              {console.log(this.state.allBeersAndCountries)}
-            </div>
-          ))}
-        </div>
-      </div>
-    );
+    // //           <p>From:</p>
+    // //           <p> {item.country}</p>
+    // //           {console.log(this.state.allBeersAndCountries)}
+    // //         </div>
+    // //       ))}
+    // //     </div>
+    // //   </div>
+    // );
   }
 }

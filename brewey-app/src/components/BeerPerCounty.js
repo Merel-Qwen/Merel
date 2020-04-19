@@ -100,7 +100,7 @@ export default class BeerPerCountry extends React.Component {
         </div>
 
         <div>
-          <h1>Beers not from USA</h1>
+          {/* <h1>Beers not from USA</h1>
 
           <div className="allbeers">
             {this.state.allBeersAndCountries
@@ -113,7 +113,7 @@ export default class BeerPerCountry extends React.Component {
                   <p> {item.country}</p>
                 </div>
               ))}
-          </div>
+          </div> */}
         </div>
       </div>
     );
