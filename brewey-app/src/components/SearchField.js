@@ -6,7 +6,6 @@ export default class SearchField extends React.Component {
     this.state = {
       loading: true,
       value: "",
-      isTested: false,
     };
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
@@ -27,9 +26,6 @@ export default class SearchField extends React.Component {
       allBeers.push({
         beerName: dataArray[i].name,
         abv: dataArray[i].abv,
-        isOnlyUSA: this.isOnlyUSA(dataArray[i].name),
-
-        // img: dataArray[i].brewery.images.icon,
       });
     }
     allBeers.sort();
@@ -40,24 +36,23 @@ export default class SearchField extends React.Component {
       loading: false,
     });
   }
-  isOnlyUSA(beerIsoCode) {
-    return beerIsoCode === this.state.value;
-  }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
   }
 
   handleSubmit(event) {
-    alert("The beer you're looking for is: " + this.state.value);
+    const filterdBeers = this.state.allBeers.filter((beer) =>
+      beer.beerName.toUpperCase().includes(this.state.value.toUpperCase())
+    );
+
+    this.setState({
+      filterdBeers: filterdBeers,
+    });
     event.preventDefault();
   }
 
   render() {
-    if (this.isTested) {
-      return <div>isTested</div>;
-    }
-
     if (this.state.loading) {
       return <div>loading...</div>;
     }
@@ -65,9 +60,34 @@ export default class SearchField extends React.Component {
     if (!this.state.allBeers) {
       return <div>didn't get a beer</div>;
     }
-    // inputfielt met ID maken, value meenemen in de filter.
-    //in de onclick maak ik een documentgetelementbijID , daarop een functie met een .value
-    //
+
+    if (this.state.filterdBeers) {
+      return (
+        <div>
+          <form onSubmit={this.handleSubmit}>
+            <label>
+              Search bij name
+              <input
+                type="text"
+                value={this.state.value}
+                onChange={this.handleChange}
+              />
+            </label>
+            <input type="submit" value="Submit" />
+          </form>
+          <button onClick={this.backToBeers}>back to all beers</button>
+          <div className="allbeers">
+            {this.state.filterdBeers.map((item) => (
+              <div className="beerItem">
+                <p> {item.beerName}</p>
+                <p> ABV {item.abv}%</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      );
+    }
+
     return (
       <div>
         <div>
@@ -82,6 +102,7 @@ export default class SearchField extends React.Component {
             </label>
             <input type="submit" value="Submit" />
           </form>
+
           <div className="allbeers">
             {this.state.allBeers
               .filter((item) => !this.state.value)
@@ -95,53 +116,7 @@ export default class SearchField extends React.Component {
                 </div>
               ))}
           </div>
-
-          <h1>Beers by name</h1>
-
-          <div className="allbeers">
-            {this.state.allBeers.map((item) => (
-              <div className="beerItem">
-                <p> {item.beerName}</p>
-                <p> ABV {item.abv}%</p>
-                <img src={item.img} />
-              </div>
-            ))}
-          </div>
         </div>
-
-        <div>
-          <h1>Beers from USA</h1>
-
-          {/* <div className="allbeers">
-            {this.state.allBeersAndCountries
-              .filter((item) => item.isOnlyUSA)
-              .map((item) => (
-                <ul className="beerItem">
-                  <li> {item.beerName}</li>
-
-                  <li>From:</li>
-                  <li> {item.country}</li>
-                </ul>
-              ))}
-          </div> */}
-        </div>
-        {/* 
-        <div>
-          <h1>Beers not from USA</h1>
-
-          <div className="allbeers">
-            {this.state.allBeersAndCountries
-              .filter((item) => !item.isOnlyUSA)
-              .map((item) => (
-                <div className="beerItem">
-                  <p> {item.beerName}</p>
-
-                  <p>From:</p>
-                  <p> {item.country}</p>
-                </div>
-              ))}
-          </div>
-        </div> */}
       </div>
     );
   }
