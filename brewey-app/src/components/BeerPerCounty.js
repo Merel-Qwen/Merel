@@ -10,7 +10,6 @@ export default class BeerPerCountry extends React.Component {
       onlyUSA: [],
       isClicked: false,
     };
-    this.ikbengeklikt = this.ikbengeklikt.bind(this);
   }
 
   async componentDidMount() {
@@ -19,8 +18,6 @@ export default class BeerPerCountry extends React.Component {
     const response = await fetch(url);
     const data = await response.json();
     const dataArray = data.data;
-    console.log("data:", data);
-    console.log("data.data", dataArray);
 
     let allBeersAndCountries = [];
     let i;
@@ -44,12 +41,6 @@ export default class BeerPerCountry extends React.Component {
     return beerIsoCode === "US";
   }
 
-  ikbengeklikt() {
-    this.setState((prevState) => ({
-      isClicked: !prevState.isClicked,
-    }));
-  }
-
   render() {
     if (this.state.loading) {
       return <div>loading...</div>;
@@ -58,9 +49,7 @@ export default class BeerPerCountry extends React.Component {
     if (!this.state.allBeersAndCountries) {
       return <div>didn't get a beer</div>;
     }
-    // inputfielt met ID maken, value meenemen in de filter.
-    //in de onclick maak ik een documentgetelementbijID , daarop een functie met een .value
-    //
+
     return (
       <div>
         <div>
