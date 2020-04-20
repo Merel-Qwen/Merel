@@ -3,8 +3,8 @@ import React from "react";
 export default class FetchData extends React.Component {
   state = {
     loading: true,
-    beer: {},
-    beerName: {},
+    allBeersAndCountries: [],
+    beersFromUSA: [],
   };
 
   async componentDidMount() {
@@ -16,45 +16,63 @@ export default class FetchData extends React.Component {
     console.log("data:", data);
     console.log("data.data", dataArray);
 
+    let allBeersAndCountries = [];
     let i;
     for (i = 0; i < dataArray.length; i++) {
+      allBeersAndCountries.push({
+        country: dataArray[i].country.displayName,
+        beerName: dataArray[i].name,
+      });
+      allBeersAndCountries.sort();
+
+      console.log(i);
       this.setState({
-        beer: dataArray[i].country,
-        beerName: dataArray[i],
+        allBeersAndCountries: allBeersAndCountries,
+
         loading: false,
       });
-      console.log(i);
+    }
+    let beersFromUSA = [];
+    let e;
+    for (e = 0; e < dataArray.length; e++) {
+      beersFromUSA.push({
+        country: dataArray[e].country.displayName,
+        beerName: dataArray[e].name,
+      });
+      beersFromUSA.sort();
+
+      this.setState({
+        beersFromUSA: beersFromUSA,
+
+        loading: false,
+      });
     }
   }
 
   render() {
     if (this.state.loading) {
-      return <div>loading...</div>;
+      return <div>Getting your beers....</div>;
     }
 
-    if (!this.state.beer) {
+    if (!this.state.allBeersAndCountries) {
       return <div>didn't get a beer</div>;
     }
 
-    return (
-      <div>
-        <div>
-          <h6>Beer</h6>
-          <p>{this.state.beerName.name}</p>
-          {console.log(this.state.beerName)}
-        </div>
-        <div>
-          <h6>country</h6>
-          <p>{this.state.beer.name}</p>
-          {console.log(this.state.beer.name)}
-        </div>
+    // return (
+    // //   <div>
+    // //     <h1>All beers</h1>
+    // //     <div className="allbeers">
+    // //       {this.state.allBeersAndCountries.map((item) => (
+    // //         <div className="beerItem">
+    // //           <p> {item.beerName}</p>
 
-        <div>
-          <h6>Region</h6>
-          <p>{this.state.beerName.region}</p>
-        </div>
-        <div></div>
-      </div>
-    );
+    // //           <p>From:</p>
+    // //           <p> {item.country}</p>
+    // //           {console.log(this.state.allBeersAndCountries)}
+    // //         </div>
+    // //       ))}
+    // //     </div>
+    // //   </div>
+    // );
   }
 }

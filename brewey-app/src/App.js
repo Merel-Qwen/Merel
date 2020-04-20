@@ -1,14 +1,17 @@
 import React, { Component } from "react";
 import BrewerySearch from "./components/BrewerySearch";
 import FetschData from "./components/FetschData";
-
+import BeerPerCountry from "./components/BeerPerCounty";
+import SearchField from "./components/SearchField";
 import "./App.css";
 
 function App() {
   return (
     <div className="App">
-      <FetschData />
-      <BrewerySearch />
+      {/* <FetschData /> */}
+      <BeerPerCountry />
+
+      <SearchField />
     </div>
   );
 }
