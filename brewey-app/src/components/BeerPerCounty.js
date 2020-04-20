@@ -67,7 +67,7 @@ export default class BeerPerCountry extends React.Component {
           <button onClick={this.ikbengeklikt}>
             {this.state.isClicked ? "zoek voor USA" : "Zoek voor niet-USA"}
           </button>
-          <h1>Beers per country</h1>
+          <h1>Beer app</h1>
 
           <div className="allbeers">
             {this.state.allBeersAndCountries.map((item) => (

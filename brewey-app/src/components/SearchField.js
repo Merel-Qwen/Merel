@@ -27,6 +27,7 @@ export default class SearchField extends React.Component {
       allBeers.push({
         beerName: dataArray[i].name,
         abv: dataArray[i].abv,
+        isOnlyUSA: this.isOnlyUSA(dataArray[i].name),
 
         // img: dataArray[i].brewery.images.icon,
       });
@@ -39,9 +40,9 @@ export default class SearchField extends React.Component {
       loading: false,
     });
   }
-  //   isOnlyUSA(beerIsoCode) {
-  //     return beerIsoCode === "US";
-  //   }
+  isOnlyUSA(beerIsoCode) {
+    return beerIsoCode === this.state.value;
+  }
 
   handleChange(event) {
     this.setState({ value: event.target.value });
@@ -108,10 +109,10 @@ export default class SearchField extends React.Component {
           </div>
         </div>
 
-        {/* <div>
+        <div>
           <h1>Beers from USA</h1>
 
-          <div className="allbeers">
+          {/* <div className="allbeers">
             {this.state.allBeersAndCountries
               .filter((item) => item.isOnlyUSA)
               .map((item) => (
@@ -122,8 +123,8 @@ export default class SearchField extends React.Component {
                   <li> {item.country}</li>
                 </ul>
               ))}
-          </div>
-        </div> */}
+          </div> */}
+        </div>
         {/* 
         <div>
           <h1>Beers not from USA</h1>

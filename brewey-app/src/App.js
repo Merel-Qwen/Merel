@@ -8,9 +8,9 @@ import "./App.css";
 function App() {
   return (
     <div className="App">
-      <FetschData />
+      {/* <FetschData /> */}
       <BeerPerCountry />
-      <BrewerySearch />
+
       <SearchField />
     </div>
   );
