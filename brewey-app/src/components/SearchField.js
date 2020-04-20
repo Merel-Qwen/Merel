@@ -89,7 +89,7 @@ export default class SearchField extends React.Component {
     }
 
     return (
-      <div>
+      <div id="searchfield">
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>
