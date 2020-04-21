@@ -10,3 +10,13 @@ The library I used is react-scroll. This library makes it easy to scroll from on
 
 
 How to run this project:
+Download or clone this repository.
+Open the folder in your code editor and open the terminal.
+Navigate to the brewery-app.
+Then type: npm i -S react
+When this is done type: npm start
+The app will now open in the browser.
+
+To view the app properly you need a google extension.
+I think it has to do with the API.
+The extension you have to set is Moesif Orign & CORS Changer. Turn on the extension after installation.
