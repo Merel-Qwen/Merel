@@ -1,0 +1,42 @@
+body {
+  background-color: rgb(109, 172, 197);
+}
+
+.allbeers {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.beerItem {
+  background-color: rgb(21, 124, 161);
+  border: 1px solid rgb(111, 137, 146);
+  border-radius: 10px;
+  margin: 5px;
+  width: 130px;
+  height: 130px;
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  align-items: center;
+  color: white;
+  font-size: 15px;
+}
+.beerItem:hover {
+  background-color: white;
+  color: rgb(21, 124, 161);
+}
+
+h1 {
+  text-align: center;
+  font-family: Arial, Helvetica, sans-serif;
+  font-weight: bolder;
+  color: white;
+}
+
+.button {
+  background-color: transparent;
+  color: white;
+}
+
+form {
+  text-align: center;
+}
