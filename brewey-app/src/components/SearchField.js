@@ -61,13 +61,13 @@ export default class SearchField extends React.Component {
       return <div>didn't get a beer</div>;
     }
 
-    if (this.state.filterdBeers) {
+    if (this.state.filterdBeers && this.state.allBeers) {
       return (
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Search bij name
               <input
+                placeholder="Search by name"
                 type="text"
                 value={this.state.value}
                 onChange={this.handleChange}
@@ -75,7 +75,7 @@ export default class SearchField extends React.Component {
             </label>
             <input type="submit" value="Submit" />
           </form>
-          <button onClick={this.backToBeers}>back to all beers</button>
+          <h1>Beers we found</h1>
           <div className="allbeers">
             {this.state.filterdBeers.map((item) => (
               <div className="beerItem">
@@ -84,23 +84,36 @@ export default class SearchField extends React.Component {
               </div>
             ))}
           </div>
+          <h1>All beers</h1>
+          <div className="allbeers">
+            {this.state.allBeers
+              .filter((item) => !this.state.value)
+
+              .map((item) => (
+                <div className="beerItem">
+                  <p> {item.beerName}</p>
+
+                  <p> ABV {item.abv}%</p>
+                </div>
+              ))}
+          </div>
         </div>
       );
     }
 
     return (
-      <div>
+      <div id="searchfield">
         <div>
           <form onSubmit={this.handleSubmit}>
             <label>
-              Search bij name
               <input
+                placeholder="Search by name"
                 type="text"
                 value={this.state.value}
                 onChange={this.handleChange}
               />
             </label>
-            <input type="submit" value="Submit" />
+            <input className="button" type="submit" value="Submit" />
           </form>
 
           <div className="allbeers">
@@ -111,8 +124,7 @@ export default class SearchField extends React.Component {
                 <div className="beerItem">
                   <p> {item.beerName}</p>
 
-                  <p>From:</p>
-                  <p> {item.country}</p>
+                  <p> ABV {item.abv}%</p>
                 </div>
               ))}
           </div>

@@ -53,9 +53,6 @@ export default class BeerPerCountry extends React.Component {
     return (
       <div>
         <div>
-          <button onClick={this.ikbengeklikt}>
-            {this.state.isClicked ? "zoek voor USA" : "Zoek voor niet-USA"}
-          </button>
           <h1>Beer app</h1>
 
           <div className="allbeers">
@@ -73,23 +70,22 @@ export default class BeerPerCountry extends React.Component {
 
         <div>
           <h1>Beers from USA</h1>
-
           <div className="allbeers">
             {this.state.allBeersAndCountries
               .filter((item) => item.isOnlyUSA)
               .map((item) => (
-                <ul className="beerItem">
-                  <li> {item.beerName}</li>
+                <div className="beerItem">
+                  <p> {item.beerName}</p>
 
-                  <li>From:</li>
-                  <li> {item.country}</li>
-                </ul>
+                  <p>From:</p>
+                  <p> {item.country}</p>
+                </div>
               ))}
           </div>
         </div>
 
         <div>
-          {/* <h1>Beers not from USA</h1>
+          <h1>Beers not from USA</h1>
 
           <div className="allbeers">
             {this.state.allBeersAndCountries
@@ -102,7 +98,7 @@ export default class BeerPerCountry extends React.Component {
                   <p> {item.country}</p>
                 </div>
               ))}
-          </div> */}
+          </div>
         </div>
       </div>
     );
