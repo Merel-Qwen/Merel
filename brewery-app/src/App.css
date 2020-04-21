@@ -1,5 +1,12 @@
 body {
   background-color: rgb(109, 172, 197);
+  text-align: center;
+  margin: 0px;
+  width: 100%;
+  background: url(bluebackground.jpg);
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-position: center;
 }
 
 .allbeers {
@@ -39,4 +46,33 @@ h1 {
 
 form {
   text-align: center;
+}
+.search {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.pIntro {
+  text-align: center;
+  background-color: white;
+  color: rgb(21, 124, 161);
+  border: 1px solid rgb(111, 137, 146);
+  border-radius: 10px;
+  margin: 5px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  width: 900px;
+
+  font-family: Arial, Helvetica, sans-serif;
+
+  font-size: 15px;
+  align-items: center;
+}
+a {
+  font-weight: bold;
+  font-size: 15px;
+}
+a:hover {
+  background-color: rgb(90, 201, 241);
+  font-size: 17px;
 }
