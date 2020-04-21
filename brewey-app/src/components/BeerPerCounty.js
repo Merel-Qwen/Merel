@@ -1,5 +1,4 @@
 import React from "react";
-import { Link } from "react-scroll";
 
 export default class BeerPerCountry extends React.Component {
   constructor(props) {
@@ -55,16 +54,6 @@ export default class BeerPerCountry extends React.Component {
       <div>
         <div>
           <h1>Beer app</h1>
-          <Link
-            activeClass="active"
-            to="searchfield"
-            spy={true}
-            smooth={true}
-            offset={-70}
-            duration={1000}
-          >
-            <button className="button">To searchfield</button>
-          </Link>
 
           <div className="allbeers">
             {this.state.allBeersAndCountries.map((item) => (
