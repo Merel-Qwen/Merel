@@ -10,7 +10,8 @@ The library I used is react-scroll. This library makes it easy to scroll from on
 
 
 How to run this project:
-Download or clone this repository.
+
+Download or clone this repository
 
 Open the folder in your code editor and open the terminal
 
